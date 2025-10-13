@@ -28,39 +28,43 @@ if %directory%==1 if %hidden%==1 (goto hidden_directory) else (goto not_hidden_d
 if %file%==1 if %hidden%==1 (goto hidden_files) else (goto not_hidden_files)
 :visible_all
 echo::INCLUDES=VISIBLE FILES, VISIBLE DIRECTORIES
-dir /b /a-h %1 %_prompt%
+dir /b /a-h %1 %_prompt% 2>NUL
 goto :eof
 :visible_files
 echo::INCLUDES=VISIBLE FILES
-dir /b /a-d-h %1 %_prompt%
+dir /b /a-d-h %1 %_prompt% 2>NUL
 goto :eof
 :visible_directory
 echo::INCLUDES=VISIBLE DIRECTORIES
-dir /b /ad-h %1 %_prompt%
+dir /b /ad-h %1 %_prompt% 2>NUL
 goto :eof
 :hidden_all
 echo::INCLUDES=HIDDEN FILES, HIDDEN DIRECTORIES
-dir /b /ah %1 %_prompt%
+dir /b /ah %1 %_prompt% 2>NUL
 goto :eof
 :not_hidden_all
 echo::INCLUDES=ALL FILES, ALL DIRECTORIES;
-dir /b /ad %1 %_prompt%
+dir /b /ad %1 %_prompt% 2>NUL
+set temp_error=%errorlevel%
 if "%_prompt%"=="/p" echo|set/p=Press any key to continue . . .&Pause >NUL&echo:
-dir /b /a-d %1 %_prompt%
+dir /b /a-d %1 %_prompt% 2>NUL
+if %errorlevel%==1 if %temp_error%==0 call :seterror 0
 goto :eof
 :hidden_directory
 echo::INCLUDES=HIDDEN DIRECTORIES ONLY
-dir /b /ahd %1 %_prompt%
+dir /b /ahd %1 %_prompt% 2>NUL
 goto :eof
 :not_hidden_directory
 echo::INCLUDES=ALL DIRECTORIES
-dir /b /ad %1 %_prompt%
+dir /b /ad %1 %_prompt% 2>NUL
 goto :eof
 :hidden_files
 echo::INCLUDES=HIDDEN FILES ONLY
-dir /b /a-dh %1 %_prompt%
+dir /b /a-dh %1 %_prompt% 2>NUL
 goto :eof
 :not_hidden_files
 echo::INCLUDES=ALL FILES
-dir /b /a-d %1 %_prompt%
+dir /b /a-d %1 %_prompt% 2>NUL
 goto :eof
+:seterror
+exit /b %~1
