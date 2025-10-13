@@ -1,3 +1,4 @@
+Note:- Scripts may be limited in functionality due to folder access issue. Check for permissions before running in case
 ```
 SYNTAX
 "show_dir.bat"   "[path]" options
