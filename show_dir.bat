@@ -45,7 +45,7 @@ goto :eof
 :not_hidden_all
 echo::INCLUDES=ALL FILES, ALL DIRECTORIES;
 dir /b /ad %1 %_prompt%
-echo:Press any key to continue . . .&Pause >NUL
+if "%_prompt%"=="/p" echo|set/p=Press any key to continue . . .&Pause >NUL&echo:
 dir /b /a-d %1 %_prompt%
 goto :eof
 :hidden_directory
