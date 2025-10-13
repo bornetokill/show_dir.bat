@@ -8,6 +8,7 @@ SYNTAX
         h show hidden only
         d show directories
         f show files
+        p page long lists
     options must be combined like Eg. dv
     in any order
 Example 1 :- "show_dir.bat" C:\ dh
