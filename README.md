@@ -9,5 +9,6 @@ SYNTAX
         f files
     options must be combined like Eg. dv
     in any order
-Example :- "show_dir.bat" C:\ dh
+Example 1 :- "show_dir.bat" C:\ dh
+Example 2 :- "show_dir.bat" "C:\folder 1" fdv
 ```
