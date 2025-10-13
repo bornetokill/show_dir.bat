@@ -3,10 +3,10 @@ SYNTAX
 "show_dir.bat"   "[path]" options
 
     options
-        v visible
-        h hidden
-        d directories
-        f files
+        v show visible only
+        h show hidden only
+        d show directories
+        f show files
     options must be combined like Eg. dv
     in any order
 Example 1 :- "show_dir.bat" C:\ dh
