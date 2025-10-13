@@ -19,44 +19,45 @@ echo %args%|find /i "f" >NUL&&set file=1
 echo %args%|find /i "d" >NUL&&set directory=1
 if %directory%==1 if %file%==1 (set all=1) else (set all=0)
 if %all%==1 if %visible%==1 (goto visible_all)
-if %all%==1 if %hidden%==1 (goto hidden_all) else (echo TRIGGERED&goto not_hidden_all)
+if %all%==1 if %hidden%==1 (goto hidden_all) else (goto not_hidden_all)
 if %file%==1 if %visible%==1 goto visible_files
 if %directory%==1 if %visible%==1 goto visible_directory
 if %directory%==1 if %hidden%==1 (goto hidden_directory) else (goto not_hidden_directory)
 if %file%==1 if %hidden%==1 (goto hidden_files) else (goto not_hidden_files)
 :visible_all
-echo visible all
+echo::INCLUDES=VISIBLE FILES, VISIBLE DIRECTORIES
 dir /b /a-h %1
 goto :eof
 :visible_files
-echo visible files
+echo::INCLUDES=VISIBLE FILES
 dir /b /a-d-h %1
 goto :eof
 :visible_directory
-echo visible directories
+echo::INCLUDES=VISIBLE DIRECTORIES
 dir /b /ad-h %1
 goto :eof
 :hidden_all
-echo hidden all
+echo::INCLUDES=HIDDEN FILES, HIDDEN DIRECTORIES
 dir /b /ah %1
 goto :eof
 :not_hidden_all
-echo everything
+echo::INCLUDES=ALL FILES, ALL DIRECTORIES;
 dir /b /ad %1
 dir /b /a-d %1
 goto :eof
 :hidden_directory
-echo hidden dir
+echo::INCLUDES=HIDDEN DIRECTORIES ONLY
 dir /b /ahd %1
 goto :eof
 :not_hidden_directory
+echo::INCLUDES=ALL DIRECTORIES
 dir /b /ad %1
 goto :eof
 :hidden_files
-echo hidden files
+echo::INCLUDES=HIDDEN FILES ONLY
 dir /b /a-dh %1
 goto :eof
 :not_hidden_files
-echo all files
+echo::INCLUDES=ALL FILES
 dir /b /a-d %1
 goto :eof
