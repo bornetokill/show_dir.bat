@@ -11,8 +11,10 @@ set file=0
 set directory=0
 set all=0
 set visible=0
-echo %args%|findstr /vr "^[dDhHfFVv][vVfFdDhH]*$" >NUL&&(echo:format error&goto :eof) || echo: >NUL
+Set _prompt=
+echo %args%|findstr /vr "^[dDhHfFVvpP][vVfFdDhHpP]*$" >NUL&&(echo:format error&goto :eof) || echo: >NUL
 echo %args%|find /i "h"|find /i "v" >NUL&&(echo:cannot have v and h at the same time&goto :eof)
+echo %args%|find /i "p" >NUL&&set _prompt=/p
 echo %args%|find /i "h" >NUL&&set hidden=1
 echo %args%|find /i "v" >NUL&&set visible=1
 echo %args%|find /i "f" >NUL&&set file=1
@@ -26,38 +28,39 @@ if %directory%==1 if %hidden%==1 (goto hidden_directory) else (goto not_hidden_d
 if %file%==1 if %hidden%==1 (goto hidden_files) else (goto not_hidden_files)
 :visible_all
 echo::INCLUDES=VISIBLE FILES, VISIBLE DIRECTORIES
-dir /b /a-h %1
+dir /b /a-h %1 %_prompt%
 goto :eof
 :visible_files
 echo::INCLUDES=VISIBLE FILES
-dir /b /a-d-h %1
+dir /b /a-d-h %1 %_prompt%
 goto :eof
 :visible_directory
 echo::INCLUDES=VISIBLE DIRECTORIES
-dir /b /ad-h %1
+dir /b /ad-h %1 %_prompt%
 goto :eof
 :hidden_all
 echo::INCLUDES=HIDDEN FILES, HIDDEN DIRECTORIES
-dir /b /ah %1
+dir /b /ah %1 %_prompt%
 goto :eof
 :not_hidden_all
 echo::INCLUDES=ALL FILES, ALL DIRECTORIES;
-dir /b /ad %1
-dir /b /a-d %1
+dir /b /ad %1 %_prompt%
+echo:Press any key to continue . . .&Pause >NUL
+dir /b /a-d %1 %_prompt%
 goto :eof
 :hidden_directory
 echo::INCLUDES=HIDDEN DIRECTORIES ONLY
-dir /b /ahd %1
+dir /b /ahd %1 %_prompt%
 goto :eof
 :not_hidden_directory
 echo::INCLUDES=ALL DIRECTORIES
-dir /b /ad %1
+dir /b /ad %1 %_prompt%
 goto :eof
 :hidden_files
 echo::INCLUDES=HIDDEN FILES ONLY
-dir /b /a-dh %1
+dir /b /a-dh %1 %_prompt%
 goto :eof
 :not_hidden_files
 echo::INCLUDES=ALL FILES
-dir /b /a-d %1
+dir /b /a-d %1 %_prompt%
 goto :eof
