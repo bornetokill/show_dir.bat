@@ -1,5 +1,5 @@
 Note:- Scripts may be limited in functionality due to folder access issue. Check for permissions before running in case
-`icacls "path"`
+`icacls "path"` returns errorlevel 5 for access denied. `DIR` does not accurately address this issue and its errorlevel is misleading (1).
 ```
 SYNTAX
 "show_dir.bat"   "[path]" options
