@@ -32,6 +32,10 @@ SYNTAX
 Example 1 :- "file_counter.bat" C:\ dh
 Example 2 :- "file_counter.bat" "C:\folder 1" fdv
 ```
+<b>USE</b> `DOSKEY` <b>for simplicity:</b>
+
+`doskey showd="c:\path\to\show_dir.bat" $*`
+
 <b>SAMPLE OUTPUT:</b><br><SUP>
 C:\Users\Anil Bapna\Desktop>file_counter.bat .\ dh<br>
 :INCLUDES=HIDDEN DIRECTORIES ONLY<br>
