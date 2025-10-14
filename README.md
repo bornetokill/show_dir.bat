@@ -2,8 +2,9 @@ Note:- Scripts may be limited in functionality due to folder access issue. Check
 `icacls "path"` returns errorlevel 5 for access denied. `DIR` does not accurately address this issue and its errorlevel is misleading (errorlevel 1).
 ```
 SYNTAX
-"show_dir.bat"   "[path]" options
-
+"show_dir.bat" options "[path]"
+Default [path] is current directory
+Wildcards are accepted *?
     options
         v show visible only
         h show hidden only
@@ -12,8 +13,9 @@ SYNTAX
         p page long lists
     options must be combined like Eg. dv
     in any order
-Example 1 :- "show_dir.bat" C:\ dh
-Example 2 :- "show_dir.bat" "C:\folder 1" fdv
+Example 1 :- "show_dir.bat"  dh C:\
+Example 2 :- "show_dir.bat"  fdv "C:\folder 1"
+Example 3 :- "show_dir.bat" fd
 ```
 
 ```
