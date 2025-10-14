@@ -1,6 +1,7 @@
 @echo off
 
 if exist %1 goto continue
+if not exist %1 call :seterror 9009&echo:invalid path&goto :eof
 (for /f "delims=" %%i in ('if "%args%" NEQ "" echo HELL') do if "%%i"=="HELL" goto continue) 2>NUL
 goto :eof
 :continue
