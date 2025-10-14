@@ -1,7 +1,8 @@
 @echo off
 
 if "%~1" NEQ "" goto :continue
-echo:missing 1st arg 
+echo:missing 1st arg
+call :seterror 2
 goto :eof
 :continue
 set "args=%~1"
@@ -11,8 +12,8 @@ set directory=0
 set all=0
 set visible=0
 Set _prompt=
-echo %args%|findstr /vr "^[dDhHfFVvpP][vVfFdDhHpP]*$" >NUL&&(echo:format error&goto :eof) || echo: >NUL
-echo %args%|find /i "h"|find /i "v" >NUL&&(echo:cannot have v and h at the same time&goto :eof)
+echo %args%|findstr /vr "^[dDhHfFVvpP][vVfFdDhHpP]*$" >NUL&&(call :seterror 2&echo:format error&goto :eof) || echo: >NUL
+echo %args%|find /i "h"|find /i "v" >NUL&&(call :seterror 2&echo:cannot have v and h at the same time&goto :eof)
 echo %args%|find /i "p" >NUL&&set _prompt=/p
 echo %args%|find /i "h" >NUL&&set hidden=1
 echo %args%|find /i "v" >NUL&&set visible=1
