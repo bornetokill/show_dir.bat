@@ -1,4 +1,5 @@
 Note:- Scripts may be limited in functionality due to folder access issue. Check for permissions before running in case
+`icacls "path"`
 ```
 SYNTAX
 "show_dir.bat"   "[path]" options
