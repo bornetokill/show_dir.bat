@@ -14,8 +14,9 @@ Wildcards are accepted *?
     options must be combined like Eg. dv
     in any order
 Example 1 :- "show_dir.bat"  dh C:\
-Example 2 :- "show_dir.bat"  fdv "C:\folder 1"
-Example 3 :- "show_dir.bat" fd
+Example 2 :- "show_dir.bat"  fh C:\Windows\*.dll
+Example 3 :- "show_dir.bat"  fdv "C:\folder 1"
+Example 4 :- "show_dir.bat" fd
 ```
 
 ```
